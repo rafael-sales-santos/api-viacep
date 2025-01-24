@@ -44,11 +44,11 @@
     <script>
         $(document).ready(function() {
             $('#buscar-cep').click(function() {
-                var cep = $('#cep').val().replace(/\D/g, ''); // Remover tudo o que não for número
+                var cep = $('#cep').val().replace(/\D/g, ''); 
 
                 if (cep.length === 8) {
-                    $('#erro').hide(); // Esconde a mensagem de erro
-                    $('#resultado').hide(); // Esconde o resultado anterior
+                    $('#erro').hide();
+                    $('#resultado').hide();
                     buscarCep(cep);
                 } else {
                     alert("Por favor, insira um CEP válido.");
@@ -57,12 +57,12 @@
 
             function buscarCep(cep) {
                 $.ajax({
-                    url: `/buscar-cep/${cep}`, // A rota que chama o controller
+                    url: `/buscar-cep/${cep}`,
                     method: 'GET',
                     dataType: 'json',
                     success: function(data) {
                         if (data.error) {
-                            $('#erro').text(data.error).show(); // Exibe a mensagem de erro
+                            $('#erro').text(data.error).show();
                         } else {
                             // Preencher os campos com os dados do CEP
                             $('#logradouro').text(data.logradouro);
@@ -70,12 +70,11 @@
                             $('#cidade').text(data.localidade);
                             $('#estado').text(data.uf);
 
-                            // Exibir o resultado
                             $('#resultado').show();
                         }
                     },
                     error: function() {
-                        $('#erro').text('Erro ao buscar o CEP').show(); // Exibe a mensagem de erro
+                        $('#erro').text('Erro ao buscar o CEP').show();
                     }
                 });
             }
